@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+}
+
+#main_row {
+    height: 95vh;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+#search_panel {
+    width: 33%;
+    height: 100%;
+}
+
+h3 {
+    text-align: left;
+    border: 2px solid red;
+    margin-bottom: 0%;
+    margin-top: 0%;
+}
+
+ul {
+    border: 2px solid black;
+    height: 82%;
+}
+
+#input_panel {
+    border: 2px solid red;
+    height: 6%;
+    align-items: left;
+
+}
+
+input {
+    height: 35px;
+}
+
+#output_panel {
+    width: 65%;
+}
+
+.day_forecast {
+    border: 2px solid red;
+    height: 40%;
+}
+
+.five_forecast {
+    border: 2px solid yellow;
+    height: 30%;
+}
