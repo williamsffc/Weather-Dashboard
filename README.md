@@ -19,9 +19,9 @@ Link: https://williamsffc.github.io/Weather-Dashboard/
 
 Screenshot of the project.
 
-<img src="assets/img1">
-<img src="assets/img2">
-<img src="assets/img3">
+<img src="assets/img1.jpg">
+<img src="assets/img2.jpg">
+<img src="assets/img3.jpg">
 
 ##  License & Copyright
 
