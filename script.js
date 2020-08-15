@@ -1,7 +1,7 @@
 $(document).ready(function () {
    
-    $(".btn").click(function (e) {
-        
+    $(".btn").click(function (event) {
+
         var inputCity = $("#input").val();
         var key = "64b15ee1fcd8bf94f299ecb4565feacd";
         var todayDate = moment().format("M/DD/YYYY");
@@ -11,13 +11,13 @@ $(document).ready(function () {
 
             if (inputCity !== '') { 
 
-                $("#listOutPut").append("<li onclick='#'>" + inputCity + "</li>")
+                $("#listOutPut").append("<li onclick='#'>" + inputCity + "</li>");
 
                 $.ajax({
                     url: queryURl_current,
                     method: "GET",
                 }).then(function (result) {
-
+                    
                     $("#item1").empty().append("<p class='title3'>" + result.name + " (" + todayDate + ")</p><img src='assets/01d@2x.png' /img>");
                     $("#item2").empty().append("<p>Temperature: " + result.main.temp + " &#176F</p>");
                     $("#item3").empty().append("<p>Humidity: " + result.main.humidity + "%</p>");
@@ -27,7 +27,7 @@ $(document).ready(function () {
                 
             } else {
                 alert("City name can not be empty!");
-                empty(inputCity)
+               
             }
 
         $.ajax({
@@ -63,5 +63,9 @@ $(document).ready(function () {
         });
 
         
+        
+        
+
+
     });
 })
