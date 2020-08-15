@@ -1,6 +1,6 @@
 $(document).ready(function () {
    
-    $(".btn").click(function () {
+    $(".btn").click(function (e) {
         
         var inputCity = $("#input").val();
         var key = "64b15ee1fcd8bf94f299ecb4565feacd";
@@ -19,7 +19,6 @@ $(document).ready(function () {
                 }).then(function (result) {
 
                     $("#item1").empty().append("<p class='title3'>" + result.name + " (" + todayDate + ")</p><img src='assets/01d@2x.png' /img>");
-                    // $("#item1").empty().append("<img src='assets/01d@2x.png' /img>");
                     $("#item2").empty().append("<p>Temperature: " + result.main.temp + " &#176F</p>");
                     $("#item3").empty().append("<p>Humidity: " + result.main.humidity + "%</p>");
                     $("#item4").empty().append("<p>Wind Speed: " + result.wind.speed + " MPH</p>");
@@ -62,5 +61,7 @@ $(document).ready(function () {
                 }
             }
         });
+
+        
     });
 })
