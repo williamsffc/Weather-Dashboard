@@ -1,8 +1,7 @@
 $(document).ready(function () {
-    
+   
     $(".btn").click(function () {
-       
-
+        
         var inputCity = $("#input").val();
         var key = "64b15ee1fcd8bf94f299ecb4565feacd";
         var todayDate = moment().format("M/DD/YYYY");
@@ -19,7 +18,8 @@ $(document).ready(function () {
                     method: "GET",
                 }).then(function (result) {
 
-                    $("#item1").empty().append("<p>" + result.name + " (" + todayDate + ") ___</p>");
+                    $("#item1").empty().append("<p>" + result.name + " (" + todayDate + ")<img src='assets/01d@2x.png' /img></p>");
+                    // $("#item1").empty().append("<img src='assets/01d@2x.png' /img>");
                     $("#item2").empty().append("<p>Temperature: " + result.main.temp + " &#176F</p>");
                     $("#item3").empty().append("<p>Humidity: " + result.main.humidity + "%</p>");
                     $("#item4").empty().append("<p>Wind Speed: " + result.wind.speed + " MPH</p>");
@@ -32,8 +32,6 @@ $(document).ready(function () {
             } else {
                 alert("City name can not be empty!");
             }
-
-       
 
         $.ajax({
             url: queryURL_5Days,
@@ -56,10 +54,6 @@ $(document).ready(function () {
                     newCard.append("<p>Humidity: " + res.list[i].main.humidity + "%</p>");
                     
                     $("#extended").append(newCard);
-                    // $("#day1").empty().append("<h3>" + displayDate + "</h3>");
-                    // // $("#day1").append("<img>" + icons +"</img>")
-                    // $("#day1").append("<p>Temp: " + res.list[i].main.temp + "&#176F</p>");
-                    // $("#day1").append("<p>Humidity: " + res.list[i].main.humidity + "%</p>");
                 }
                 
             }
