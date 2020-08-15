@@ -18,19 +18,17 @@ $(document).ready(function () {
                     method: "GET",
                 }).then(function (result) {
 
-                    $("#item1").empty().append("<p>" + result.name + " (" + todayDate + ")<img src='assets/01d@2x.png' /img></p>");
+                    $("#item1").empty().append("<p class='title3'>" + result.name + " (" + todayDate + ")</p><img src='assets/01d@2x.png' /img>");
                     // $("#item1").empty().append("<img src='assets/01d@2x.png' /img>");
                     $("#item2").empty().append("<p>Temperature: " + result.main.temp + " &#176F</p>");
                     $("#item3").empty().append("<p>Humidity: " + result.main.humidity + "%</p>");
                     $("#item4").empty().append("<p>Wind Speed: " + result.wind.speed + " MPH</p>");
                     $("#item5").empty().append("<p>UV index: </p>");
-
-                    $("#inputCity").val('');
-
                 }); 
                 
             } else {
                 alert("City name can not be empty!");
+                empty(inputCity)
             }
 
         $.ajax({
@@ -50,17 +48,19 @@ $(document).ready(function () {
 
                     newCard.addClass("card_5 forecast");
                     newCard.append("<h3>" + displayDate + "</h3>");
-                    newCard.append("<p>Temp: " + res.list[i].main.temp + "&#176F</p>");
-                    newCard.append("<p>Humidity: " + res.list[i].main.humidity + "%</p>");
+
+                    if (res.list[i].main.temp <= 58) {
+                        newCard.append("<img class='icon2' src='assets/02d@2x.png' /img>");
+                    } else {
+                        newCard.append("<img class='icon2' src='assets/01d@2x.png' /img>");
+                    }
+                   
+                    newCard.append("<p class='info'>Temp: " + res.list[i].main.temp + "&#176F</p>");
+                    newCard.append("<p class='info'>Humidity: " + res.list[i].main.humidity + "%</p>");
                     
                     $("#extended").append(newCard);
                 }
-                
             }
-             
         });
-        
-       
     });
-
 })
