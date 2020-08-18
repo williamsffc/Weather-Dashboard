@@ -8,7 +8,6 @@ $(document).ready(function () {
         var todayDate = moment().format("M/DD/YYYY");
 
         if (cityName !== '') {
-
             var queryURl_current = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + key + "&units=imperial";
             
             $.ajax({
@@ -39,9 +38,7 @@ $(document).ready(function () {
         // var queryURL_UV = "https://api.openweathermap.org/data/2.5/uvi?q=" + inputCity + "&appid=" + key + "&units=imperial";
 
         cityList.push(inputCity);
-
         localStorage.setItem("cityList",JSON.stringify(cityList));
-
         searchCity(inputCity);
 
         $.ajax({
