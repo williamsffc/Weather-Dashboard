@@ -1,34 +1,48 @@
 $(document).ready(function () {
    
+    var cityList = [];
+    console.log(cityList);
+    var key = "64b15ee1fcd8bf94f299ecb4565feacd";
+
+    function searchCity (cityName) {
+        var todayDate = moment().format("M/DD/YYYY");
+
+        if (cityName !== '') {
+
+            var queryURl_current = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + key + "&units=imperial";
+            
+            $.ajax({
+                url: queryURl_current,
+                method: "GET",
+            }).then(function (result) {
+                $("#item1").empty().append("<p class='title3'>" + result.name + " (" + todayDate + ")</p><img src='assets/01d@2x.png' /img>");
+                $("#item2").empty().append("<p>Temperature: " + result.main.temp + " &#176F</p>");
+                $("#item3").empty().append("<p>Humidity: " + result.main.humidity + "%</p>");
+                $("#item4").empty().append("<p>Wind Speed: " + result.wind.speed + " MPH</p>");
+                $("#item5").empty().append("<p>UV index: </p>");
+            });
+        } else {
+            alert("City name can not be empty!");
+        }
+    }
+
+    $("ul").on("click", ".searchBttn" ,function (event) {
+        searchCity($(this).text());
+    });
+
+
     $(".btn").click(function (event) {
 
         var inputCity = $("#input").val();
-        var key = "64b15ee1fcd8bf94f299ecb4565feacd";
-        var todayDate = moment().format("M/DD/YYYY");
-        var queryURl_current = "https://api.openweathermap.org/data/2.5/weather?q=" + inputCity + "&appid=" + key + "&units=imperial";
+        $("#listOutPut").append("<li class='searchBttn'>" + inputCity + "</li>");
         var queryURL_5Days = "https://api.openweathermap.org/data/2.5/forecast?q=" + inputCity + "&appid=" + key + "&units=imperial";
         // var queryURL_UV = "https://api.openweathermap.org/data/2.5/uvi?q=" + inputCity + "&appid=" + key + "&units=imperial";
 
-            if (inputCity !== '') { 
+        cityList.push(inputCity);
 
-                $("#listOutPut").append("<li onclick='#'>" + inputCity + "</li>");
+        localStorage.setItem("cityList",JSON.stringify(cityList));
 
-                $.ajax({
-                    url: queryURl_current,
-                    method: "GET",
-                }).then(function (result) {
-                    
-                    $("#item1").empty().append("<p class='title3'>" + result.name + " (" + todayDate + ")</p><img src='assets/01d@2x.png' /img>");
-                    $("#item2").empty().append("<p>Temperature: " + result.main.temp + " &#176F</p>");
-                    $("#item3").empty().append("<p>Humidity: " + result.main.humidity + "%</p>");
-                    $("#item4").empty().append("<p>Wind Speed: " + result.wind.speed + " MPH</p>");
-                    $("#item5").empty().append("<p>UV index: </p>");
-                }); 
-                
-            } else {
-                alert("City name can not be empty!");
-               
-            }
+        searchCity(inputCity);
 
         $.ajax({
             url: queryURL_5Days,
@@ -61,11 +75,6 @@ $(document).ready(function () {
                 }
             }
         });
-
-        
-        
-        
-
 
     });
 })
